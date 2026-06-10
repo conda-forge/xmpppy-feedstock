@@ -1,5 +1,5 @@
 {% set name = "xmpppy" %}
-{% set version = "0.7.3" %}
+{% set version = "0.7.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/xmpppy-{{ version }}.tar.gz
-  sha256: c0f4ab504cfecf8b127d857b260e480598ae5522cb7b084c84537503646b3bb6
+  sha256: f54df50a153c104d33456768936e9e8352e6c57cb3bed2cb93a2a0ee3fffd73c
 
 build:
   entry_points:
