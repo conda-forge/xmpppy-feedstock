@@ -1,0 +1,51 @@
+schema_version: 1
+
+context:
+  name: xmpppy
+  version: "0.7.4"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/xmpppy-${{ version }}.tar.gz
+  sha256: f54df50a153c104d33456768936e9e8352e6c57cb3bed2cb93a2a0ee3fffd73c
+
+build:
+  number: 0
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - xmpp-message = xmpp.cli:simple_message
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - pip
+    - setuptools
+  run:
+    - python >=${{ python_min }}
+    - six
+
+tests:
+  - python:
+      imports:
+        - xmpp
+      pip_check: true
+      python_version:
+        - ${{ python_min }}
+        - "*"
+    script:
+      - xmpp-message --help
+
+about:
+  summary: XMPP implementation in Python
+  license: GPL-3.0-or-later
+  license_file: LICENSE
+  homepage: https://github.com/xmpppy/xmpppy
+
+extra:
+  recipe-maintainers:
+    - akrherz
